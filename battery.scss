@@ -1,21 +1,14 @@
 .battery-app {
   height: 100vh;
-  background: #0096b8;
+  background: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .fa {
-    display: inline;
-    font-size: 2em;
-    &#bat-level {
-      color: #ff1414;
-    }
-  }
   p {
     color: #fff;
     font-size: 1em;
     span {
-      color: #000;
+      color: #00b800;
     }
   }
   #bat-bar {
