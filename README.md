@@ -1,2 +1,3 @@
 # battery-status
-Statuses of device battery using JS batteryManager API
+Using JS batteryManager API to get the status of your device's battery.
+https://w3c.github.io/battery/

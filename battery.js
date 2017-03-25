@@ -1,9 +1,13 @@
 navigator.getBattery().then(function(b) {
   var l = b.level;
   var c = b.charging;
+  console.log(b.chargingTime);
+  console.log(b.dischargingTime);
+  // charging methods don't work?
   var updateBat = function() {
     $('#bat-current span').text(l);
     $('#bat-bar-level').width((l * 100)+"%");
+
     if(c == true) {
       $('#bat-charge span').text("Yep");
     }
@@ -19,5 +23,6 @@ navigator.getBattery().then(function(b) {
   updateBat();
   b.onlevelchange = function() {
     updateBat();
-  };  
+  };
+
 });
