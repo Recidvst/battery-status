@@ -1,14 +1,14 @@
 navigator.getBattery().then(function(b) {
   var updateBat = function() {
-    var l = b.level;
+    var l = b.level * 100;
     var c = b.charging;
-    $('#bat-current span').text((l * 100) << 0).attr("low","false");
+    $('#bat-current span').text(l << 0).attr("low","false");
     if(l < 49) {
       $('#bat-current span').attr("low","true");
     }
-    $('#bat-bar-level').width((l * 100)+"%");
+    $('#bat-bar-level').width( l +"%");
     if(c == true) {
-      $('#bat-charge span').text("Yep").attr("low","true");;
+      $('#bat-charge span').text("Yep").attr("low","false");;
     }
     else {
       if (l > 50) {
@@ -20,7 +20,7 @@ navigator.getBattery().then(function(b) {
     }
   }
   updateBat();
-  var then;
+  var then = Date.now();
   var batteryThen = b.level * 100;
   b.onlevelchange = function() {
     updateBat();
@@ -32,7 +32,7 @@ navigator.getBattery().then(function(b) {
 
     var diff = now - then;
     var sec = diff / 1000;
-    var deathmin = (sec / 60) * batteryDivide;
+    var deathmin = ( (sec / 60) << 0 ) * batteryDivide;
 
     then = Date.now();
     batteryThen = batteryNow;
