@@ -40,3 +40,15 @@ navigator.getBattery().then(function(b) {
     $('#bat-remain span').text(deathmin).attr("low","true");
   }
   });
+
+
+// chart dev
+new Chartist.Line('.ct-chart', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  series: [
+    [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]
+  ]
+}, {
+  low: 0,
+  showArea: true
+});
