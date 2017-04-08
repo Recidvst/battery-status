@@ -43,12 +43,15 @@ navigator.getBattery().then(function(b) {
 
 
 // chart dev
-new Chartist.Line('.ct-chart', {
+var data = {
   labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   series: [
     [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]
   ]
-}, {
-  low: 0,
+}
+var options = {
+  width: 600,
+  height: 400,
   showArea: true
-});
+}
+new Chartist.Line('.ct-chart', data, options);

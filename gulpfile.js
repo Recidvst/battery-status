@@ -13,12 +13,13 @@ var del = require('del');
 var browserSync = require('browser-sync').create();
 
 // Gulp Default tasks
-gulp.task('default', ['check', 'clean', 'sass', 'scripts', 'browser-sync']);
+gulp.task('default', ['check', 'clean', 'sass', 'scripts', 'browser-sync', 'watch']);
 
 // Gulp Watch function
 gulp.task('watch', function() {
-  gulp.watch('scss/*.scss', ['sass']).on('change', browserSync.reload);
-  gulp.watch('js/*.js', ['scripts']).on('change', browserSync.reload);
+  gulp.watch('scss/*.scss', ['sass']);
+  gulp.watch('js/*.js', ['scripts']);
+  gulp.watch('*.html').on('change', browserSync.reload);
 })
 
 // SASS Compile + Minify
