@@ -1,0 +1,18 @@
+{
+  "name": "battery-level",
+  "description": "Battery API experiment",
+  "main": "battery.js",
+  "authors": [
+    "Recidvst"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Recidvst/battery-status",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}

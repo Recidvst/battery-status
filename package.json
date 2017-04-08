@@ -1,0 +1,27 @@
+{
+  "name": "battery-level",
+  "version": "1.0.0",
+  "description": "Battery API experiment",
+  "main": "battery.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Recidvst/battery-status.git"
+  },
+  "author": "Recidvst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Recidvst/battery-status/issues"
+  },
+  "homepage": "https://github.com/Recidvst/battery-status#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8"
+  }
+}
