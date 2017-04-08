@@ -9,17 +9,17 @@ var cleancss = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var gutil = require('gulp-util');
 var del = require('del');
+var browserSync = require('browser-sync').create();
 
 // Gulp Default tasks
-gulp.task('default', ['check', 'clean', 'sass', 'scripts']);
+gulp.task('default', ['check', 'clean', 'sass', 'scripts', 'browser-sync']);
 
 // Gulp Watch function
 gulp.task('watch', function() {
-  gulp.watch('scss/*.scss', ['sass']);
-  gulp.watch('js/*.js', ['scripts']);
+  gulp.watch('scss/*.scss', ['sass']).on('change', browserSync.reload);
+  gulp.watch('js/*.js', ['scripts']).on('change', browserSync.reload);
 })
 
-// Task Definitions
 // SASS Compile + Minify
 gulp.task('sass', function() {
   return gulp.src('scss/*.scss')
@@ -30,6 +30,7 @@ gulp.task('sass', function() {
       suffix: ".min"
     }))
     .pipe(gulp.dest('dist'))
+    .pipe(browserSync.reload({stream: true}))
 });
 // Concat + Minify .js
 gulp.task('scripts', function() {
@@ -43,10 +44,19 @@ gulp.task('scripts', function() {
         suffix: ".min"
       }))
       .pipe(gulp.dest('dist'))
+      .pipe(browserSync.reload({stream: true}))
 });
 // Clear build folder
 gulp.task('clean', function() {
     return del.sync(['dist/*']);
+});
+// browser-sync server
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
 });
 // Gulp run test
 gulp.task('check', function() {

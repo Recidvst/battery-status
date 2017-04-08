@@ -15,6 +15,7 @@
   "homepage": "https://github.com/Recidvst/battery-status#readme",
   "dependencies": {},
   "devDependencies": {
+    "browser-sync": "^2.18.8",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.0.4",
