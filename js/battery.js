@@ -34,13 +34,11 @@ $(document).ready(function() {
              $('#bat-charge span').text("Nope, but maybe you should be..").attr("low","true");
            }
          }
-         if (deathTimeAPI != Infinity) {
+         if (deathTimeAPI != Infinity && deathTime < (deathTimeAPI - 10) ) {
            $('#bat-remain span').text(deathTimeAPI).attr("low","true");
-           console.log(api);
          }
          else {
            $('#bat-remain span').text(deathTime).attr("low","true");
-           console.log(us);
          }
       }
 
