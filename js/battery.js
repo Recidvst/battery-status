@@ -1,57 +1,57 @@
-navigator.getBattery().then(function(b) {
-  var updateBat = function() {
-    var l = b.level * 100;
-    var c = b.charging;
-    $('#bat-current span').text(l << 0).attr("low","false");
-    if(l < 49) {
-      $('#bat-current span').attr("low","true");
-    }
-    $('#bat-bar-level').width( l +"%");
-    if(c == true) {
-      $('#bat-charge span').text("Yep").attr("low","false");;
-    }
-    else {
-      if (l > 50) {
-        $('#bat-charge span').text("Nope").attr("low","true");
+$(document).ready(function() {
+  var constTime = Date.now();
+  var docReady = true;
+
+  navigator.getBattery().then(function(b) {
+      var constBattery = b.level * 100;
+      var l = constBattery;
+      var isCharging = b.charging;
+
+      var getBatteryDetails = function() {
+        var nowTime = Date.now();
+        var nowBattery = b.level * 100;
+
+        var diffTime = nowTime - constTime;
+        var diffBattery = constBattery - nowBattery;
+        var divideBattery = nowBattery / diffBattery;
+        var deathTime = (divideBattery * diffTime) / 60000;
+        var deathTimeAPI = b.dischargingTime / 60;
+
+        // do dom stuff
+        $('#bat-current span').text(l << 0).attr("low","false");
+         if(l < 49) {
+           $('#bat-current span').attr("low","true");
+         }
+         $('#bat-bar-level').width( l +"%");
+         if(isCharging == true) {
+           $('#bat-charge span').text("Yep").attr("low","false");;
+         }
+         else {
+           if (l > 50) {
+             $('#bat-charge span').text("Nope").attr("low","true");
+           }
+           else {
+             $('#bat-charge span').text("Nope, but maybe you should be..").attr("low","true");
+           }
+         }
+         if (deathTimeAPI != Infinity && deathTimeAPI > deathTime) {
+           $('#bat-remain span').text(Math.round(deathTimeAPI)).attr("low","true");
+         }
+         else {
+           $('#bat-remain span').text(Math.round(deathTime)).attr("low","true");
+         }
       }
-      else {
-        $('#bat-charge span').text("Nope, but maybe you should be..").attr("low","true");
+
+      // trigger updates
+      if (docReady == true) {
+        getBatteryDetails();
+        docReady = false;
       }
-    }
-  }
-  updateBat();
-  var then = Date.now();
-  var batteryThen = b.level * 100;
-  b.onlevelchange = function() {
-    updateBat();
+      b.onlevelchange = function() {getBatteryDetails();}
+      b.addEventListener('levelchange', getBatteryDetails);
+      b.addEventListener('chargingtimechange', getBatteryDetails);
+      b.addEventListener('dischargingtimechange', getBatteryDetails);
+      b.addEventListener('chargingchange', getBatteryDetails);
 
-    var now = Date.now();
-    var batteryNow = b.level * 100;
-    var batteryDiff = batteryThen - batteryNow;
-    var batteryDivide = batteryThen / batteryDiff;
-
-    var diff = now - then;
-    var sec = diff / 1000;
-    var deathmin = ( (sec / 60) << 0 ) * batteryDivide;
-
-    then = Date.now();
-    batteryThen = batteryNow;
-
-    $('#bat-remain span').text(deathmin).attr("low","true");
-  }
   });
-
-
-// chart dev
-var data = {
-  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  series: [
-    [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]
-  ]
-}
-var options = {
-  width: 600,
-  height: 400,
-  showArea: true
-}
-new Chartist.Line('.ct-chart', data, options);
+});
