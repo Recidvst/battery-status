@@ -14,8 +14,8 @@ $(document).ready(function() {
         var diffTime = nowTime - constTime;
         var diffBattery = constBattery - nowBattery;
         var divideBattery = nowBattery / diffBattery;
-        var deathTime = (divideBattery * diffTime) / 60000;
-        var deathTimeAPI = b.dischargingTime / 60;
+        var deathTime = Math.round((divideBattery * diffTime) / 60000);
+        var deathTimeAPI = Math.round(b.dischargingTime / 60);
 
         // do dom stuff
         $('#bat-current span').text(l << 0).attr("low","false");
@@ -34,12 +34,14 @@ $(document).ready(function() {
              $('#bat-charge span').text("Nope, but maybe you should be..").attr("low","true");
            }
          }
-        //  if (deathTimeAPI != Infinity && deathTimeAPI > deathTime) {
-        //    $('#bat-remain span').text(Math.round(deathTimeAPI)).attr("low","true");
-        //  }
-        //  else {
-           $('#bat-remain span').text(Math.round(deathTime)).attr("low","true");
-        //  }
+         if (deathTimeAPI != Infinity) {
+           $('#bat-remain span').text(deathTimeAPI).attr("low","true");
+           console.log(api);
+         }
+         else {
+           $('#bat-remain span').text(deathTime).attr("low","true");
+           console.log(us);
+         }
       }
 
       // trigger updates
