@@ -34,12 +34,12 @@ $(document).ready(function() {
              $('#bat-charge span').text("Nope, but maybe you should be..").attr("low","true");
            }
          }
-         if (deathTimeAPI != Infinity && deathTimeAPI > deathTime) {
-           $('#bat-remain span').text(Math.round(deathTimeAPI)).attr("low","true");
-         }
-         else {
+        //  if (deathTimeAPI != Infinity && deathTimeAPI > deathTime) {
+        //    $('#bat-remain span').text(Math.round(deathTimeAPI)).attr("low","true");
+        //  }
+        //  else {
            $('#bat-remain span').text(Math.round(deathTime)).attr("low","true");
-         }
+        //  }
       }
 
       // trigger updates
