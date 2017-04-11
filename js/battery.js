@@ -1,21 +1,20 @@
 $(document).ready(function() {
-  var constTime = Date.now();
-  var docReady = true;
+  var constTime = Date.now(),
+      docReady = true;
 
   navigator.getBattery().then(function(b) {
-      var constBattery = b.level * 100;
-      var l = constBattery;
-      var isCharging = b.charging;
+      var constBattery = b.level * 100,
+          l = constBattery,
+          isCharging = b.charging;
 
       var getBatteryDetails = function() {
-        var nowTime = Date.now();
-        var nowBattery = b.level * 100;
-
-        var diffTime = nowTime - constTime;
-        var diffBattery = constBattery - nowBattery;
-        var divideBattery = nowBattery / diffBattery;
-        var deathTime = Math.round((divideBattery * diffTime) / 60000);
-        var deathTimeAPI = Math.round(b.dischargingTime / 60);
+        var nowTime = Date.now(),
+            nowBattery = b.level * 100,
+            diffTime = nowTime - constTime,
+            diffBattery = constBattery - nowBattery,
+            divideBattery = nowBattery / diffBattery,
+            deathTime = Math.round((divideBattery * diffTime) / 60000),
+            deathTimeAPI = Math.round(b.dischargingTime / 60);
 
         // do dom stuff
         $('#bat-current span').text(l << 0).attr("low","false");
@@ -35,12 +34,33 @@ $(document).ready(function() {
            }
          }
          if (deathTimeAPI != Infinity && deathTime < (deathTimeAPI - 10) ) {
-           $('#bat-remain span').text(deathTimeAPI).attr("low","true");
+           var t = deathTimeAPI;
          }
          else {
-           $('#bat-remain span').text(deathTime).attr("low","true");
+           if (deathTime != Infinity) {
+             var t = deathTime;
+           }
+           else if (deathTimeAPI != Infinity) {
+             var t = deathTimeAPI;
+           }
+           else {
+             var t = 'Who knows?!';
+           }
          }
-      }
+         $('#bat-remain span').text(t).attr("low","true");
+
+         // pie chart
+         var data = {
+            series: [100,]
+          };
+          data.series.push(nowBattery);
+          var sum = function(a, b) { return a + b };
+          new Chartist.Pie('#bat-pie-chart', data, {
+            labelInterpolationFnc: function(value) {
+              return Math.round(value / data.series.reduce(sum) * 100) + '%';
+            }
+          });
+      } // end getBatteryDetails function
 
       // trigger updates
       if (docReady == true) {
