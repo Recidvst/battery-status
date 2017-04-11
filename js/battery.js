@@ -65,9 +65,6 @@ $(document).ready(function() {
       // trigger updates
       if (docReady == true) {
         getBatteryDetails();
-        setTimeout(function(){
-          getBatteryDetails();
-        }, 5000);
         docReady = false;
       }
       b.onlevelchange = function() {getBatteryDetails();}
