@@ -24,7 +24,9 @@ $(document).ready(function() {
               if ( deathTime != 'Infinity' ) {
                 deathTime = timeFormat(deathTime, 60);
               }
-              deathTimeAPI = timeFormat(deathTimeAPI, 1);
+              if ( deathTimeAPI != 'Infinity' ) {
+                deathTimeAPI = timeFormat(deathTimeAPI, 1);
+              }
 
         // do dom stuff
         $('#bat-current span').text((l << 0) + '%');
@@ -43,14 +45,17 @@ $(document).ready(function() {
            var t = deathTimeAPI;
          }
          else {
-           if (deathTime != Infinity) {
+           if ( isCharging == true ) {
+             var t = 'Plugged in - forever'
+           }
+           else if (deathTime != Infinity) {
              var t = deathTime;
            }
            else if (deathTimeAPI != Infinity) {
              var t = deathTimeAPI;
            }
            else {
-             var t = 'Who knows?!';
+             var t = '?';
            }
          }
          $('#bat-remain span').text(t);
