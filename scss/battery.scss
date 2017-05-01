@@ -1,25 +1,41 @@
+$green: #00b800;
+$red: #b80f00;
+body {
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: black;
+  color: white;
+}
 .battery-app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  p {
-    font-size: 1em;
-    span {
-      color: #00b800;
+
+  .dashboard {
+    h1 {
+      text-transform: uppercase;
+    }
+    h2 {
+      text-transform: uppercase;
+      font-size: 1.25em;
+    }
+    p {
+      font-size: 2.5em;
+      color: $green;
+      span[low="true"] {
+        color: $red;
+      }
+    }
+    @media (min-width: 480px) {
+      &nth-child(2) {
+        float: left;
+      }
     }
   }
-  #bat-bar {
-    width: 500px;
-    height: 15px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background: grey;
-    #bat-bar-level {
-      height: 100%;
-      width: 100%;
-      border-radius: 10px;
-      background: #00b800;
-      transition: 1s ease;
-    }
+  .pie-chart {
+    height: 75vh;
   }
+}
+.text-center {
+  text-align: center;
 }

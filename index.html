@@ -14,25 +14,53 @@
 
 <body>
 
-  <div class="battery-app">
-    <ul>
-      <li>
-        <p id="bat-current">Your battery is at <span>unknown</span> percent.</p>
-      </li>
-      <li>
-        <p id="bat-charge">Are you charging? <span>unknown</span></p>
-      </li>
-       <li>
-         <p id="bat-remain">You have approx... <span><em>forever</em></span> minutes remaining.</p>
-      </li>
-    </ul>
-    <div id="bat-bar">
-	    <div id="bat-bar-level"></div>
+<div class="container-fluid battery-app">
+
+<div class="container-fluid text-center">
+  <h1> Battery Status </h1>
+</div>
+
+<main>
+  <div class="container-fluid dashboard">
+    <div class="col-xs-24 col-sm-8 text-center">
+      <div>
+        <h2>Current Level</h2>
+      </div>
+      <div>
+        <p id="bat-current"><span low="false">unknown</span></p>
+      </div>
+    </div>
+    <div class="col-xs-24 col-sm-8 text-center">
+      <div>
+        <h2>Charging Status</h2>
+      </div>
+      <div>
+        <p id="bat-charge"><span low="false">unknown</span></p>
+      </div>
+    </div>
+    <div class="col-xs-24 col-sm-8 text-center">
+      <div>
+        <h2>Approx Remaining</h2>
+      </div>
+      <div>
+        <p id="bat-remain"><span low="false"><em>forever</em></span></p>
+      </div>
     </div>
   </div>
 
-<div class="ct-chart ct-golden-section" id="bat-pie-chart"></div>
+  <div class="container pie-chart">
+    <div id="piechart" style="width: 100%; height: 100%;"></div>
+  </div>
 
+</main>
+
+<!-- <div id="bat-bar">
+  <div id="bat-bar-level"></div>
+</div> -->
+
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="dist/app.min.js"></script>
 </body>
 </html>

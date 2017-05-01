@@ -26,7 +26,8 @@ gulp.task('watch', function() {
 gulp.task('sass', function() {
   return gulp.src(
     [
-    'bower_components/chartist/dist/chartist.min.css',
+    'bower_components/bootstrap-grid-only/css/grid24.css',
+    'bower_components/components-font-awesome/css/font-awesome.min.css',
     'scss/*.scss'
     ])
     .pipe(sourcemaps.init())

@@ -5,6 +5,6 @@ Live example: https://recidvst.github.io/battery-status/
 
 API here: https://w3c.github.io/battery/
 
-todo: Change battery estimate for plugged-in + svg/canvas chart + timer
+todo: Add timer, notifications? Fine-tune calculated times..
 
 Thanks to Allinall8 for maths help!
